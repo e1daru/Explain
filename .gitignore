@@ -1,0 +1,14 @@
+# Local research sessions and machine-specific artifacts
+evaluation/
+dist/
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+
+# Host-specific installations are created locally, not published
+.claude/
+.codex/
+.agents/
