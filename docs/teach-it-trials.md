@@ -1,8 +1,8 @@
 # Try teach-it
 
-`teach-it` combines adaptive questioning, visual prediction, and checking the
-learner's own explanation in one conversation. It chooses what helps at the
-current step; there are no modes to select.
+`teach-it` clarifies the learner's target, then uses short text explanations,
+examples, and practice in one conversation. It chooses what helps at the
+current step; there are no modes to select or learning files to create.
 
 Use a separate chat for each topic and invoke `teach-it`. When comparing runs,
 keep the model and reasoning setting the same where those controls are available;
@@ -31,12 +31,24 @@ b = a
 b.append(3)
 ```
 
+### Broad topic: clarify first
+
+```text
+Teach me about databases. I'm not sure where to start.
+```
+
+The first reply should use the host's question tool to help you choose a useful
+direction and wait for your answer. If no suitable tool is available or permitted,
+it should ask in plain chat. Once the target and enough background are known,
+teaching should begin without a long questionnaire. Contrast this with the specific code prompt above,
+which already supplies a target and background.
+
 ### Physics: shadows
 
 ```text
 Help me understand why the same upright pole has a longer shadow when the Sun
-is lower. Assume level ground. I can follow a simple sketch but do not know
-trigonometry. Keep it concise and use questions to work out what I am missing.
+is lower. Assume level ground. I do not know trigonometry. Use text only, keep
+it concise, and use questions to work out what I am missing.
 ```
 
 ### Quantities: a flagged group
@@ -51,17 +63,23 @@ concise and use questions to work out what I am missing.
 
 ## What to watch during a trial
 
-- The first question helps locate a specific missing relationship.
+- A broad request gets a useful scope question; a sufficiently clear request
+  starts the explanation without repeating known information.
 - The tutor waits for your actual reply and uses it in its next turn.
+- Clarifying questions use the question tool when available and permitted, one
+  question per call, without repeating the question in chat. An asynchronous
+  prompt stays pending until you answer; a preselected choice is not your reply.
 - It teaches when you are stuck instead of repeatedly demanding an answer.
-- A visual, when used, makes the relationship easier to see.
+- The example is easy to follow in text, with no generated visuals or documents.
+- Goals, definitions, and progress stay in the same chat; no learning directories
+  or resource files appear.
 - A correct guess is not treated as proof that you understand the reason.
 - “Just explain” produces a direct explanation; “stop” ends the questioning.
 - Once you can use the idea, it finishes without expanding into a course.
 
 These are behaviors to observe, not a claim that every run already passes.
 No new learner trial or end-to-end Claude/Codex teaching evaluation has been
-run for this unified skill. File-format validation and archive checks do
+run for this text-only revision. File-format validation and archive checks do
 not establish teaching quality.
 
 ## Feedback sheet
@@ -70,7 +88,7 @@ Use 1–5, with 5 best, or leave a cell blank if you could not judge it. For
 “low burden,” 5 means little unnecessary effort or reading. Include one
 specific exchange that helped or got in the way.
 
-| Model / topic | Useful questions | Explanation clarity | Visual usefulness, if any | Low burden | Overall experience |
+| Model / topic | Useful questions | Explanation clarity | Example usefulness | Low burden | Overall experience |
 |---|---|---|---|---|---|
 | … / shared objects | | | | | |
 | … / shadows | | | | | |
@@ -87,18 +105,20 @@ the explanation helped. Keep these separate rather than inventing one
 Reviewed on 2026-11-07 at upstream revision
 `4ae2317ddb22b046e26455e4f9c9b3aaaf62212d`:
 
-- [Matt Pocock's Grill Me](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grill-me/SKILL.md) is currently a small entry point to `grilling`.
-- [Grilling](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grilling/SKILL.md) adapts rounds of questions as dependent decisions are resolved. It presents recommended answers and aims to resolve the design before action.
-- [Teach](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach/SKILL.md) is a broader, persistent teaching workspace. Its lesson-file and learning-record workflow is outside this conversational skill.
-- [Wait What](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/wait-what/SKILL.md) asks for an explanation to be rephrased when it does not land.
+- [Matt Pocock's Teach](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach/SKILL.md) grounds lessons in the learner's purpose, chooses a manageable challenge, and combines explanation with practice and feedback. It also distinguishes immediate performance from long-term retention.
+- That skill uses a persistent workspace with HTML lessons, references, resources,
+  learning records, and reusable assets. This adaptation keeps teaching in text
+  within one chat and does not create that workspace.
 
 `teach-it` contains original teaching instructions. It borrows the
-idea of choosing the next question from the previous answer and the direct
-instruction style. For this purpose, it asks one question, avoids giving away
-the answer, teaches as soon as the gap is clear, and stops at the immediate goal.
-It does not require Matt's skills, a glossary, a learning workspace, or a
-particular question tool. These adaptations are design hypotheses for user
-testing, not findings established by the upstream repository.
+goal-led teaching and feedback principles above, while choosing each next step
+from the learner's reply. Clarifying questions establish the target; short
+explanations and changed examples help the learner apply it. Any brief recall
+happens within the chat, with no revision schedule or claim of lasting mastery.
+It does not require Matt's skills, a glossary, or a learning workspace.
+Clarification uses the host's question tool, with a plain-chat fallback only
+when no suitable tool is available or permitted. These adaptations are design
+choices for user testing, not findings established by the upstream repository.
 
 The shared `name` / `description` frontmatter and Markdown body follow the
 [Agent Skills format](https://agentskills.io/specification). Installation and

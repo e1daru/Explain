@@ -10,9 +10,11 @@ Understand unfamiliar code, concepts, and processes through a concise question, 
 
 **[Download teach-it](https://github.com/e1daru/textbook-it/releases/latest/download/teach-it.zip)** · **[Read the skill](skills/teach-it/SKILL.md)** · **[Testing prompts and feedback sheet](docs/teach-it-trials.md)**
 
-`teach-it` asks one focused question, waits for your answer, and explains the missing link using a small worked example or visual. It chooses a diagnostic question, prediction, or check of your own explanation as the conversation needs it. You do not need to choose a mode. Say “just explain” at any point to get a direct explanation.
+`teach-it` teaches in one text-only chat session. It asks focused clarifying questions to narrow down what you want to learn and what you already know, then explains one idea at a time with a small example. It waits for your replies and adjusts the next step. If your request is already clear, it starts teaching immediately. Say “just explain” at any point to skip the questions.
 
-This single, self-contained skill replaces the three question-led experiments. It is inspired by [Matt Pocock's Grill Me / grilling](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grilling/SKILL.md) and the B2 visual walkthrough. Its teaching quality remains for user testing.
+Clarifying questions use the host's question tool: `AskUserQuestion` in Claude Code, or an available user-input tool in Codex. It asks one question at a time and waits for your answer. Plain chat is the fallback when no suitable question tool is available or permitted; teaching exercises can stay in the chat.
+
+Inspired by [Matt Pocock's `/teach`](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach/SKILL.md), it keeps a clear learning goal, manageable steps, and practice with feedback. Everything stays in the conversation: no learning directory, resource files, HTML lessons, or generated visuals. The skill itself is one `SKILL.md` file. Its teaching quality remains for user testing.
 
 Unzip `teach-it.zip` and place the `teach-it` folder in `~/.claude/skills/` for Claude Code or `~/.agents/skills/` for Codex. From an updated clone, you can instead install it in both with:
 
@@ -34,7 +36,7 @@ Every individual download contains a complete skill folder, including its suppor
 
 | Skill | Approach | Status | Download |
 |---|---|---|---|
-| [teach-it](skills/teach-it/SKILL.md) | Adaptive questions, worked examples, and useful visuals | Unified interactive teaching skill | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/teach-it.zip) |
+| [teach-it](skills/teach-it/SKILL.md) | Clarifying questions, short text explanations, and practice in one chat | Single-session teaching skill | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/teach-it.zip) |
 | [textbook-it](skills/textbook-it/SKILL.md) | Goal-first explanation with seven optional strategy guides | Current main version | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it.zip) |
 | [textbook-it-b2](skills/textbook-it-b2/SKILL.md) | A compact visual carries the walkthrough | Preferred baseline from user review | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b2.zip) |
 | [textbook-it-b1](skills/textbook-it-b1/SKILL.md) | Concise, sequential worked steps | Experimental alternative | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b1.zip) |
@@ -120,7 +122,7 @@ B2 was preferred in user review. The current modular version was compared with B
 
 The design draws on [the Agent Skills format](https://agentskills.io/specification), [Anthropic's open-source skill-creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md), and [IES guidance on worked examples and visual explanations](https://ies.ed.gov/ncee/wwc/PracticeGuide/1). The seven-guide organization is a design choice to refine through use.
 
-`teach-it` uses original instructions inspired by Matt Pocock's concise, adaptive interview workflow. His reviewed `grill-me` delegates to `grilling`, which asks rounds of design questions with recommended answers. Here, one learning question comes at a time, without revealing its answer, and the session ends at the learner's immediate goal. See the [source notes and trial protocol](docs/teach-it-trials.md) for the differences and evaluation limits.
+`teach-it` uses original instructions adapting Matt Pocock's `/teach` to a single conversation. It clarifies the learner's immediate goal, teaches a small step, and uses their response to adjust. Progress and definitions stay in the chat. See the [source notes and trial protocol](docs/teach-it-trials.md) for the differences and evaluation limits.
 
 To rebuild the downloadable archives:
 
