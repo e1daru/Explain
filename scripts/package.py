@@ -8,6 +8,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 DIST = ROOT / "dist"
+QUESTION_LED = {"textbook-it-probe", "textbook-it-predict", "textbook-it-teachback"}
 
 
 def build_zip(destination, files):
@@ -28,6 +29,8 @@ def main():
     DIST.mkdir(exist_ok=True)
     archives = []
     all_files = []
+    question_files = []
+    question_names = set()
     for folder in sorted(SKILLS.iterdir()):
         if not (folder / "SKILL.md").is_file():
             continue
@@ -36,6 +39,14 @@ def main():
         build_zip(destination, files)
         archives.append(destination)
         all_files.extend(files)
+        if folder.name in QUESTION_LED:
+            question_files.extend(files)
+            question_names.add(folder.name)
+    if question_names != QUESTION_LED:
+        raise RuntimeError(f"Missing question-led skills: {sorted(QUESTION_LED - question_names)}")
+    question_bundle = DIST / "question-led-skills.zip"
+    build_zip(question_bundle, question_files)
+    archives.append(question_bundle)
     combined = DIST / "all-skills.zip"
     build_zip(combined, all_files)
     archives.append(combined)

@@ -6,9 +6,31 @@ Understand unfamiliar code, concepts, and processes through a concise question, 
 
 **[Download textbook-it](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it.zip)** · **[Download all versions](https://github.com/e1daru/textbook-it/releases/latest/download/all-skills.zip)** · **[Browse releases](https://github.com/e1daru/textbook-it/releases)**
 
+## New: three question-led versions
+
+These experimental skills adapt the questioning approach in [Matt Pocock's Grill Me / grilling](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grilling/SKILL.md) for learning. Each asks one focused question, waits for your answer, and uses it to decide what to explain next. Each is self-contained and works without installing the main skill.
+
+| Version | How it finds the missing link | Download |
+|---|---|---|
+| [textbook-it-probe](skills/textbook-it-probe/SKILL.md) | Asks a diagnostic question, then explains the gap your answer reveals | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-probe.zip) |
+| [textbook-it-predict](skills/textbook-it-predict/SKILL.md) | Shows a small example or visual and asks you to predict what changes | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-predict.zip) |
+| [textbook-it-teachback](skills/textbook-it-teachback/SKILL.md) | Starts with your own explanation and repairs a missing or mistaken connection | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-teachback.zip) |
+
+**[Download just these three](https://github.com/e1daru/textbook-it/releases/latest/download/question-led-skills.zip)** · **[Testing prompts and feedback sheet](docs/question-led-trials.md)**
+
+Try **predict** first if you liked B2's visual walkthrough. This is a design recommendation; the new variants have not yet been tested with learners. Say “just explain” at any point to switch to a direct explanation.
+
+For Claude Code, invoke `/textbook-it-probe`, `/textbook-it-predict`, or `/textbook-it-teachback`. For Codex, use the same name with `$` in place of `/`. Installation uses the same folders described below. From an updated clone, install all three with:
+
+```bash
+python3 scripts/install.py --host both --skill textbook-it-probe
+python3 scripts/install.py --host both --skill textbook-it-predict
+python3 scripts/install.py --host both --skill textbook-it-teachback
+```
+
 ## Skill catalog
 
-Every download contains a complete skill folder, including its supporting files.
+Every individual download contains a complete skill folder, including its supporting files. The three question-led versions above supplement these seven explanation versions.
 
 | Skill | Approach | Status | Download |
 |---|---|---|---|
@@ -20,7 +42,7 @@ Every download contains a complete skill folder, including its supporting files.
 | [textbook-it-b](skills/textbook-it-b/SKILL.md) | Explain a method through consequential steps | Early prototype | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b.zip) |
 | [textbook-it-c](skills/textbook-it-c/SKILL.md) | Explain the central mechanism concisely | Early prototype | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-c.zip) |
 
-Install the main version first. The alternatives are available for comparison; you do not need to install all seven.
+Use the main version for a complete explanation in one response, or one of the question-led versions for interactive teaching. You do not need to install every alternative.
 
 ## Install in Claude Code
 
@@ -97,10 +119,12 @@ B2 was preferred in user review. The current modular version was compared with B
 
 The design draws on [the Agent Skills format](https://agentskills.io/specification), [Anthropic's open-source skill-creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md), and [IES guidance on worked examples and visual explanations](https://ies.ed.gov/ncee/wwc/PracticeGuide/1). The seven-guide organization is a design choice to refine through use.
 
+The question-led variants use original instructions inspired by Matt Pocock's concise, adaptive interview workflow. His current `grill-me` delegates to `grilling`, which asks rounds of design questions with recommended answers. Here, one learning question comes at a time, without revealing its answer, and the session ends at the learner's immediate goal. See the [source notes and trial protocol](docs/question-led-trials.md) for the differences and evaluation limits.
+
 To rebuild the downloadable archives:
 
 ```bash
 python3 scripts/package.py
 ```
 
-The output includes one ZIP per skill, `all-skills.zip`, and `SHA256SUMS.txt` in `dist/`. Local evaluation logs and machine-specific files are excluded from the published repository and packages.
+The output includes one ZIP per skill, `question-led-skills.zip`, `all-skills.zip`, and `SHA256SUMS.txt` in `dist/`. Local evaluation logs and machine-specific files are excluded from the published repository and packages.
