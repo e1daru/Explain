@@ -4,31 +4,33 @@ Understand unfamiliar code, concepts, and processes through a concise question, 
 
 **Start with [textbook-it](skills/textbook-it/SKILL.md).** It builds on the B2 visual walkthrough and chooses among seven optional teaching guides. It can also give a short prose explanation when a visual would add work.
 
-**[Download textbook-it](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it.zip)** · **[Download all versions](https://github.com/e1daru/textbook-it/releases/latest/download/all-skills.zip)** · **[Browse releases](https://github.com/e1daru/textbook-it/releases)**
+**[Download textbook-it](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it.zip)** · **[Download released versions](https://github.com/e1daru/textbook-it/releases/latest/download/all-skills.zip)** · **[Browse releases](https://github.com/e1daru/textbook-it/releases)**
 
-## Teach it
+## Explain it
 
-**[Download teach-it](https://github.com/e1daru/textbook-it/releases/latest/download/teach-it.zip)** · **[Read the skill](skills/teach-it/SKILL.md)** · **[Testing prompts and feedback sheet](docs/teach-it-trials.md)**
+**[Read the skill](skills/explain-it/SKILL.md)** · **[Testing prompts and feedback sheet](docs/explain-it-trials.md)**
 
-`teach-it` teaches in one text-only chat session. It asks focused clarifying questions to narrow down what you want to learn and what you already know, then explains one idea at a time with a small example. It waits for your replies and adjusts the next step. If your request is already clear, it starts teaching immediately. Say “just explain” at any point to skip the questions.
+`explain-it` teaches in one text-only chat session. It clarifies your goal and background, explains one idea through a small example, and adjusts to your replies. If your request is already clear, it starts immediately. Say “just explain” to skip practice questions.
 
-Clarifying questions use the host's question tool: `AskUserQuestion` in Claude Code, or an available user-input tool in Codex. It asks one question at a time and waits for your answer. Plain chat is the fallback when no suitable question tool is available or permitted; teaching exercises can stay in the chat.
+Clarification uses the host's question tool, one question at a time, waiting for your answer. Plain chat is the fallback when no suitable tool is available or permitted. Practice questions can stay in chat.
 
-Inspired by [Matt Pocock's `/teach`](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach/SKILL.md), it keeps a clear learning goal, manageable steps, and practice with feedback. Everything stays in the conversation: no learning directory, resource files, HTML lessons, or generated visuals. The skill itself is one `SKILL.md` file. Its teaching quality remains for user testing.
+Everything stays in the conversation: no learning directory, resource files, or generated visuals. The skill itself is one `SKILL.md` file.
 
-Unzip `teach-it.zip` and place the `teach-it` folder in `~/.claude/skills/` for Claude Code or `~/.agents/skills/` for Codex. From an updated clone, you can instead install it in both with:
+Install the renamed skill from an updated clone:
 
 ```bash
-python3 scripts/install.py --host both --skill teach-it
+python3 scripts/install.py --host both --skill explain-it
 ```
+
+You can also copy `skills/explain-it/` into `~/.claude/skills/` or `~/.agents/skills/`. If you previously installed `teach-it`, remove that old skill folder after installing `explain-it` to avoid duplicate choices.
 
 In Claude Code:
 
 ```text
-/teach-it Help me understand why two Python variables can share one list.
+/explain-it Help me understand why two Python variables can share one list.
 ```
 
-In Codex, use `$teach-it` with the same request.
+In Codex, use `$explain-it` with the same request.
 
 ## Skill catalog
 
@@ -36,7 +38,7 @@ Every individual download contains a complete skill folder, including its suppor
 
 | Skill | Approach | Status | Download |
 |---|---|---|---|
-| [teach-it](skills/teach-it/SKILL.md) | Clarifying questions, short text explanations, and practice in one chat | Single-session teaching skill | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/teach-it.zip) |
+| [explain-it](skills/explain-it/SKILL.md) | Clarifying questions, short text explanations, and practice in one chat | Single-session teaching skill | [Install from clone](#explain-it) |
 | [textbook-it](skills/textbook-it/SKILL.md) | Goal-first explanation with seven optional strategy guides | Current main version | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it.zip) |
 | [textbook-it-b2](skills/textbook-it-b2/SKILL.md) | A compact visual carries the walkthrough | Preferred baseline from user review | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b2.zip) |
 | [textbook-it-b1](skills/textbook-it-b1/SKILL.md) | Concise, sequential worked steps | Experimental alternative | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b1.zip) |
@@ -45,7 +47,7 @@ Every individual download contains a complete skill folder, including its suppor
 | [textbook-it-b](skills/textbook-it-b/SKILL.md) | Explain a method through consequential steps | Early prototype | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b.zip) |
 | [textbook-it-c](skills/textbook-it-c/SKILL.md) | Explain the central mechanism concisely | Early prototype | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-c.zip) |
 
-Use `textbook-it` for a complete explanation in one response, or `teach-it` for interactive teaching. You do not need to install every alternative.
+Use `textbook-it` for a complete explanation in one response, or `explain-it` for interactive teaching. You do not need to install every alternative.
 
 ## Install in Claude Code
 
@@ -122,7 +124,7 @@ B2 was preferred in user review. The current modular version was compared with B
 
 The design draws on [the Agent Skills format](https://agentskills.io/specification), [Anthropic's open-source skill-creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md), and [IES guidance on worked examples and visual explanations](https://ies.ed.gov/ncee/wwc/PracticeGuide/1). The seven-guide organization is a design choice to refine through use.
 
-`teach-it` uses original instructions adapting Matt Pocock's `/teach` to a single conversation. It clarifies the learner's immediate goal, teaches a small step, and uses their response to adjust. Progress and definitions stay in the chat. See the [source notes and trial protocol](docs/teach-it-trials.md) for the differences and evaluation limits.
+`explain-it` has file-format validation but still needs real learner trials. See the [source notes and trial protocol](docs/explain-it-trials.md) for its design background and evaluation limits.
 
 To rebuild the downloadable archives:
 

@@ -1,10 +1,10 @@
-# Try teach-it
+# Try explain-it
 
-`teach-it` clarifies the learner's target, then uses short text explanations,
+`explain-it` clarifies the learner's target, then uses short text explanations,
 examples, and practice in one conversation. It chooses what helps at the
 current step; there are no modes to select or learning files to create.
 
-Use a separate chat for each topic and invoke `teach-it`. When comparing runs,
+Use a separate chat for each topic and invoke `explain-it`. When comparing runs,
 keep the model and reasoning setting the same where those controls are available;
 medium effort matches the project's earlier comparison setup. Test Claude and
 Codex separately and record the model used. These files do not select a model
@@ -15,7 +15,7 @@ as personal feedback, not a controlled measurement of learning effectiveness.
 
 ## Common prompts
 
-Prefix a prompt with `/teach-it` in Claude Code or `$teach-it` in Codex.
+Prefix a prompt with `/explain-it` in Claude Code or `$explain-it` in Codex.
 Answer naturally; "I don't know" is useful input. Do not read all the skill
 instructions before a trial if you want to judge the experience itself.
 
@@ -40,8 +40,8 @@ Teach me about databases. I'm not sure where to start.
 The first reply should use the host's question tool to help you choose a useful
 direction and wait for your answer. If no suitable tool is available or permitted,
 it should ask in plain chat. Once the target and enough background are known,
-teaching should begin without a long questionnaire. Contrast this with the specific code prompt above,
-which already supplies a target and background.
+teaching should begin without a long questionnaire. Contrast this with the
+specific code prompt above, which already supplies a target and background.
 
 ### Physics: shadows
 
@@ -110,7 +110,7 @@ Reviewed on 2026-11-07 at upstream revision
   learning records, and reusable assets. This adaptation keeps teaching in text
   within one chat and does not create that workspace.
 
-`teach-it` contains original teaching instructions. It borrows the
+`explain-it` contains original teaching instructions. It borrows the
 goal-led teaching and feedback principles above, while choosing each next step
 from the learner's reply. Clarifying questions establish the target; short
 explanations and changed examples help the learner apply it. Any brief recall
