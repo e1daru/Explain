@@ -6,34 +6,35 @@ Understand unfamiliar code, concepts, and processes through a concise question, 
 
 **[Download textbook-it](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it.zip)** · **[Download all versions](https://github.com/e1daru/textbook-it/releases/latest/download/all-skills.zip)** · **[Browse releases](https://github.com/e1daru/textbook-it/releases)**
 
-## New: three question-led versions
+## Teach it
 
-These experimental skills adapt the questioning approach in [Matt Pocock's Grill Me / grilling](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grilling/SKILL.md) for learning. Each asks one focused question, waits for your answer, and uses it to decide what to explain next. Each is self-contained and works without installing the main skill.
+**[Download teach-it](https://github.com/e1daru/textbook-it/releases/latest/download/teach-it.zip)** · **[Read the skill](skills/teach-it/SKILL.md)** · **[Testing prompts and feedback sheet](docs/teach-it-trials.md)**
 
-| Version | How it finds the missing link | Download |
-|---|---|---|
-| [textbook-it-probe](skills/textbook-it-probe/SKILL.md) | Asks a diagnostic question, then explains the gap your answer reveals | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-probe.zip) |
-| [textbook-it-predict](skills/textbook-it-predict/SKILL.md) | Shows a small example or visual and asks you to predict what changes | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-predict.zip) |
-| [textbook-it-teachback](skills/textbook-it-teachback/SKILL.md) | Starts with your own explanation and repairs a missing or mistaken connection | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-teachback.zip) |
+`teach-it` asks one focused question, waits for your answer, and explains the missing link using a small worked example or visual. It chooses a diagnostic question, prediction, or check of your own explanation as the conversation needs it. You do not need to choose a mode. Say “just explain” at any point to get a direct explanation.
 
-**[Download just these three](https://github.com/e1daru/textbook-it/releases/latest/download/question-led-skills.zip)** · **[Testing prompts and feedback sheet](docs/question-led-trials.md)**
+This single, self-contained skill replaces the three question-led experiments. It is inspired by [Matt Pocock's Grill Me / grilling](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grilling/SKILL.md) and the B2 visual walkthrough. Its teaching quality remains for user testing.
 
-Try **predict** first if you liked B2's visual walkthrough. This is a design recommendation; the new variants have not yet been tested with learners. Say “just explain” at any point to switch to a direct explanation.
-
-For Claude Code, invoke `/textbook-it-probe`, `/textbook-it-predict`, or `/textbook-it-teachback`. For Codex, use the same name with `$` in place of `/`. Installation uses the same folders described below. From an updated clone, install all three with:
+Unzip `teach-it.zip` and place the `teach-it` folder in `~/.claude/skills/` for Claude Code or `~/.agents/skills/` for Codex. From an updated clone, you can instead install it in both with:
 
 ```bash
-python3 scripts/install.py --host both --skill textbook-it-probe
-python3 scripts/install.py --host both --skill textbook-it-predict
-python3 scripts/install.py --host both --skill textbook-it-teachback
+python3 scripts/install.py --host both --skill teach-it
 ```
+
+In Claude Code:
+
+```text
+/teach-it Help me understand why two Python variables can share one list.
+```
+
+In Codex, use `$teach-it` with the same request.
 
 ## Skill catalog
 
-Every individual download contains a complete skill folder, including its supporting files. The three question-led versions above supplement these seven explanation versions.
+Every individual download contains a complete skill folder, including its supporting files.
 
 | Skill | Approach | Status | Download |
 |---|---|---|---|
+| [teach-it](skills/teach-it/SKILL.md) | Adaptive questions, worked examples, and useful visuals | Unified interactive teaching skill | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/teach-it.zip) |
 | [textbook-it](skills/textbook-it/SKILL.md) | Goal-first explanation with seven optional strategy guides | Current main version | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it.zip) |
 | [textbook-it-b2](skills/textbook-it-b2/SKILL.md) | A compact visual carries the walkthrough | Preferred baseline from user review | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b2.zip) |
 | [textbook-it-b1](skills/textbook-it-b1/SKILL.md) | Concise, sequential worked steps | Experimental alternative | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b1.zip) |
@@ -42,7 +43,7 @@ Every individual download contains a complete skill folder, including its suppor
 | [textbook-it-b](skills/textbook-it-b/SKILL.md) | Explain a method through consequential steps | Early prototype | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-b.zip) |
 | [textbook-it-c](skills/textbook-it-c/SKILL.md) | Explain the central mechanism concisely | Early prototype | [ZIP](https://github.com/e1daru/textbook-it/releases/latest/download/textbook-it-c.zip) |
 
-Use the main version for a complete explanation in one response, or one of the question-led versions for interactive teaching. You do not need to install every alternative.
+Use `textbook-it` for a complete explanation in one response, or `teach-it` for interactive teaching. You do not need to install every alternative.
 
 ## Install in Claude Code
 
@@ -119,7 +120,7 @@ B2 was preferred in user review. The current modular version was compared with B
 
 The design draws on [the Agent Skills format](https://agentskills.io/specification), [Anthropic's open-source skill-creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md), and [IES guidance on worked examples and visual explanations](https://ies.ed.gov/ncee/wwc/PracticeGuide/1). The seven-guide organization is a design choice to refine through use.
 
-The question-led variants use original instructions inspired by Matt Pocock's concise, adaptive interview workflow. His current `grill-me` delegates to `grilling`, which asks rounds of design questions with recommended answers. Here, one learning question comes at a time, without revealing its answer, and the session ends at the learner's immediate goal. See the [source notes and trial protocol](docs/question-led-trials.md) for the differences and evaluation limits.
+`teach-it` uses original instructions inspired by Matt Pocock's concise, adaptive interview workflow. His reviewed `grill-me` delegates to `grilling`, which asks rounds of design questions with recommended answers. Here, one learning question comes at a time, without revealing its answer, and the session ends at the learner's immediate goal. See the [source notes and trial protocol](docs/teach-it-trials.md) for the differences and evaluation limits.
 
 To rebuild the downloadable archives:
 
@@ -127,4 +128,4 @@ To rebuild the downloadable archives:
 python3 scripts/package.py
 ```
 
-The output includes one ZIP per skill, `question-led-skills.zip`, `all-skills.zip`, and `SHA256SUMS.txt` in `dist/`. Local evaluation logs and machine-specific files are excluded from the published repository and packages.
+The output includes one ZIP per skill, `all-skills.zip`, and `SHA256SUMS.txt` in `dist/`. Local evaluation logs and machine-specific files are excluded from the published repository and packages.

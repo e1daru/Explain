@@ -1,27 +1,21 @@
-# Try the three question-led skills
+# Try teach-it
 
-These are alternatives to compare, not three stages that must run in sequence.
+`teach-it` combines adaptive questioning, visual prediction, and checking the
+learner's own explanation in one conversation. It chooses what helps at the
+current step; there are no modes to select.
 
-| Skill | Starting point | Typical exchange |
-|---|---|---|
-| `textbook-it-probe` | A concrete diagnostic question | Your answer → identify the gap → explain it → try a changed case |
-| `textbook-it-predict` | One example with an unknown result | Predict → reveal and explain → update the visual → predict a changed case |
-| `textbook-it-teachback` | Your explanation of the idea | Explain → clarify or challenge one connection → repair → apply elsewhere |
-
-Use a separate chat for each trial and explicitly invoke one skill. Keep the
-model and reasoning setting the same where those controls are available;
+Use a separate chat for each topic and invoke `teach-it`. When comparing runs,
+keep the model and reasoning setting the same where those controls are available;
 medium effort matches the project's earlier comparison setup. Test Claude and
 Codex separately and record the model used. These files do not select a model
 or set its effort.
 
-The same prompt helps compare style, but learning a topic in one trial makes
-later trials easier. Rotate the order across topics and treat your ratings as
-personal preferences, not a controlled measurement of learning effectiveness.
+Learning a topic in one trial makes later trials easier. Treat your ratings
+as personal feedback, not a controlled measurement of learning effectiveness.
 
 ## Common prompts
 
-Prefix a prompt with `/textbook-it-probe`, `/textbook-it-predict`, or
-`/textbook-it-teachback` in Claude Code. Use `$` instead of `/` in Codex.
+Prefix a prompt with `/teach-it` in Claude Code or `$teach-it` in Codex.
 Answer naturally; "I don't know" is useful input. Do not read all the skill
 instructions before a trial if you want to judge the experience itself.
 
@@ -67,7 +61,7 @@ concise and use questions to work out what I am missing.
 
 These are behaviors to observe, not a claim that every run already passes.
 No new learner trial or end-to-end Claude/Codex teaching evaluation has been
-run for these three variants. File-format validation and archive checks do
+run for this unified skill. File-format validation and archive checks do
 not establish teaching quality.
 
 ## Feedback sheet
@@ -76,11 +70,11 @@ Use 1–5, with 5 best, or leave a cell blank if you could not judge it. For
 “low burden,” 5 means little unnecessary effort or reading. Include one
 specific exchange that helped or got in the way.
 
-| Skill / model / topic | Useful questions | Explanation clarity | Visual usefulness, if any | Low burden | Overall preference |
+| Model / topic | Useful questions | Explanation clarity | Visual usefulness, if any | Low burden | Overall experience |
 |---|---|---|---|---|---|
-| probe / … / … | | | | | |
-| predict / … / … | | | | | |
-| teachback / … / … | | | | | |
+| … / shared objects | | | | | |
+| … / shadows | | | | | |
+| … / flagged group | | | | | |
 
 Separately record whether you solved the changed case unaided, with a hint,
 after seeing the answer, or did not attempt it. Your preference is the primary
@@ -95,14 +89,14 @@ Reviewed on 2026-11-07 at upstream revision
 
 - [Matt Pocock's Grill Me](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grill-me/SKILL.md) is currently a small entry point to `grilling`.
 - [Grilling](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grilling/SKILL.md) adapts rounds of questions as dependent decisions are resolved. It presents recommended answers and aims to resolve the design before action.
-- [Teach](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach/SKILL.md) is a broader, persistent teaching workspace. Its lesson-file and learning-record workflow is outside these small conversational variants.
+- [Teach](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach/SKILL.md) is a broader, persistent teaching workspace. Its lesson-file and learning-record workflow is outside this conversational skill.
 - [Wait What](https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/wait-what/SKILL.md) asks for an explanation to be rephrased when it does not land.
 
-The three new skills contain original teaching instructions. They borrow the
+`teach-it` contains original teaching instructions. It borrows the
 idea of choosing the next question from the previous answer and the direct
-instruction style. For this purpose, they ask one question, avoid giving away
-the answer, teach as soon as the gap is clear, and stop at the immediate goal.
-They do not require Matt's skills, a glossary, a learning workspace, or a
+instruction style. For this purpose, it asks one question, avoids giving away
+the answer, teaches as soon as the gap is clear, and stops at the immediate goal.
+It does not require Matt's skills, a glossary, a learning workspace, or a
 particular question tool. These adaptations are design hypotheses for user
 testing, not findings established by the upstream repository.
 
