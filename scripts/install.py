@@ -44,7 +44,7 @@ def main():
     names = sorted(folder.name for folder in SKILLS.iterdir() if (folder / "SKILL.md").is_file())
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", choices=["claude", "codex", "both"], default="both")
-    parser.add_argument("--skill", choices=names, default="textbook-it")
+    parser.add_argument("--skill", choices=names, default="explain")
     args = parser.parse_args()
     source = SKILLS / args.skill
     claude_root = Path(os.environ.get("CLAUDE_CONFIG_DIR") or (Path.home() / ".claude")).expanduser()

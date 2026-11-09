@@ -1,9 +1,9 @@
 ---
-name: explain-it
+name: explain
 description: Explain a topic, code, or process in one text-only teaching conversation. Use for guided learning with clarifying questions, concise examples, and practice adapted to the user's replies.
 ---
 
-# Explain it
+# Explain
 
 Help the learner reach one concrete goal in this chat. Keep turns short.
 
