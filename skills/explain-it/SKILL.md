@@ -10,26 +10,35 @@ Help the learner reach one concrete goal in this chat. Keep turns short.
 ## Clarify
 
 Use existing context. Ask only for missing details that change the explanation:
-their goal, background, or sticking point. For a broad topic, offer two or three
-directions; suggest a starting point if they are unsure. Once the target is
-clear, state it briefly and begin. Skip questions already answered.
+their goal, background, or sticking point. A broad topic with no stated goal,
+such as "how does TCP work?", is not clear: ask before teaching, offering two or
+three directions with your suggested start first. Do not choose a direction for
+them or list the choices in prose. Once the target is clear, state it briefly
+and begin. Skip questions already answered.
 
-Use the host's question tool for clarification or "grilling":
+Ask with the host's question tool, one question per call, following its schema.
+Do not add an "Other" option or repeat the question in chat.
 
-- Claude Code: `AskUserQuestion`.
-- Codex: `request_user_input_async` when available; otherwise
-  `request_user_input` when the current mode permits it.
+- Claude Code: `AskUserQuestion`. If it is listed only as a deferred tool, load
+  it with ToolSearch first. It waits for the answer.
+- Codex in Plan mode: `request_user_input`. It waits for the answer.
+- Codex in other modes: `request_user_input_async`. It returns at once, and its
+  picker closes when your turn ends, so send no message after it. Call `sleep`
+  with `duration_ms: 600000` until the reply arrives as a new user message, at
+  most three times. If there is still no reply, or no `sleep` tool, end the turn
+  with one line saying they can answer whenever they are ready.
 
-Ask one question per call, follow the tool's schema, and allow a custom answer.
-Do not repeat it in chat. Wait for a real reply before the dependent teaching
-step; elapsed time or a preselected choice is not an answer. Fall back to chat
-only when no suitable tool is available or permitted, then end the turn and
-wait. Do not change modes just to access a tool.
+Wait for a real reply before the dependent teaching step; elapsed time or a
+preselected choice is not an answer. If no question tool is listed or the call
+fails, ask in plain chat: the question on one line, numbered options with your
+suggested start first, then "Reply with a number or your own words." End the
+turn and wait. Do not change modes just to access a tool.
 
 ## Explain and adapt
 
-Explain one idea through a small, relevant worked example. Define terms as
-needed and fill prerequisite gaps. Use plain text, short lists, or code blocks.
+Explain one idea through a small, relevant worked example. Do not use
+oversimplified analogies: show the real mechanism with its actual terms and
+values. Define terms as needed and fill prerequisite gaps. Use plain text, short lists, or code blocks.
 
 Ask a small prediction, explanation, or changed-case question to check their
 reasoning, without revealing the answer. Practice questions can stay in chat.

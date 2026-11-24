@@ -19,13 +19,13 @@ To address these, I now use `/explain-it`. It is inspired by Matt Pocock's `/tea
 
 **No lost plot**
 
-- Explains through a small worked example tied to your question, and defines terms where they matter.
+- Explains the real mechanism through a small worked example tied to your question, not an oversimplified analogy, and defines terms where they matter.
 - Checks your reasoning with a prediction, "explain why", or changed-case question. A correct guess is not taken as proof you understand.
 - Verifies uncertain facts with primary sources and cites them inline.
 
 ## How a session goes
 
-1. **Clarify.** If your goal, background, or sticking point is unclear, it asks one question at a time with the host's question tool (`AskUserQuestion` in Claude Code). For a broad topic, it offers two or three directions.
+1. **Clarify.** If your goal, background, or sticking point is unclear, it asks one question at a time in your agent's question picker (`AskUserQuestion` in Claude Code, `request_user_input` or `request_user_input_async` in Codex) and waits for your answer. A broad topic like "how does TCP work?" gets two or three directions to pick from.
 2. **Explain.** One idea, through a small worked example.
 3. **Check.** A small question, without giving away the answer.
 4. **Adapt.** It keeps what you got right and corrects the specific part you missed. If you are stuck, it gives a hint, simplifies the step, changes the example, or teaches the missing piece.
@@ -35,31 +35,13 @@ Say "just explain" to skip practice, or "stop" to end. Everything stays in the c
 
 ## Example
 
-An illustrative sketch of the flow, not a real transcript:
+`/explain-it how does TCP work?` in Claude Code. TCP is a broad topic, so it asks where to start:
 
-```text
-You:    /explain-it Why does x change too? I know basic Python lists.
-        x = [1, 2]
-        y = x
-        y.append(3)
+![explain-it asks which part of TCP to start with, offering connection setup, reliability, speed control, or the whole picture](docs/images/explain-it-question.png)
 
-Agent:  Goal: see why x also shows [1, 2, 3].
-        y = x does not copy the list. It gives the same list a second name.
-        y.append(3) changes that one list, so both names show [1, 2, 3].
-        Check: if the next line is y = [9], what does print(x) show?
+After you pick, it states the goal, explains one idea through a worked example, and ends on a question that checks your reasoning:
 
-You:    [9]
-
-Agent:  Not quite. append changed the shared list, but y = [9] builds a new
-        list and points only y at it. x still names the old one: [1, 2, 3].
-        One more: after z = x and z.append(4), what does print(x) show?
-
-You:    [1, 2, 3, 4], because z and x name the same list.
-
-Agent:  Yes. Takeaway: assignment never copies a list. Changing the list
-        shows through every name; pointing a name at a new list leaves the
-        others alone.
-```
+![explain-it explains the three-way handshake with a client and server diagram, then asks what happens if the final ACK is lost](docs/images/explain-it-answer.png)
 
 ## Install
 
