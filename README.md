@@ -25,7 +25,7 @@ To address these, I now use `/explain-it`. It is inspired by Matt Pocock's `/tea
 
 ## How a session goes
 
-1. **Clarify.** If your goal, background, or sticking point is unclear, it asks one question at a time with the host's question tool (`AskUserQuestion` in Claude Code). For a broad topic, it offers two or three directions.
+1. **Clarify.** If your goal, background, or sticking point is unclear, it asks one question at a time in your agent's question picker (`AskUserQuestion` in Claude Code, `request_user_input` or `request_user_input_async` in Codex) and waits for your answer. A broad topic like "how does TCP work?" gets two or three directions to pick from.
 2. **Explain.** One idea, through a small worked example.
 3. **Check.** A small question, without giving away the answer.
 4. **Adapt.** It keeps what you got right and corrects the specific part you missed. If you are stuck, it gives a hint, simplifies the step, changes the example, or teaches the missing piece.
