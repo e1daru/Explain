@@ -19,7 +19,7 @@ To address these, I now use `/explain-it`. It is inspired by Matt Pocock's `/tea
 
 **No lost plot**
 
-- Explains through a small worked example tied to your question, and defines terms where they matter.
+- Explains the real mechanism through a small worked example tied to your question, not an oversimplified analogy, and defines terms where they matter.
 - Checks your reasoning with a prediction, "explain why", or changed-case question. A correct guess is not taken as proof you understand.
 - Verifies uncertain facts with primary sources and cites them inline.
 

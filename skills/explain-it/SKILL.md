@@ -36,8 +36,9 @@ turn and wait. Do not change modes just to access a tool.
 
 ## Explain and adapt
 
-Explain one idea through a small, relevant worked example. Define terms as
-needed and fill prerequisite gaps. Use plain text, short lists, or code blocks.
+Explain one idea through a small, relevant worked example. Do not use
+oversimplified analogies: show the real mechanism with its actual terms and
+values. Define terms as needed and fill prerequisite gaps. Use plain text, short lists, or code blocks.
 
 Ask a small prediction, explanation, or changed-case question to check their
 reasoning, without revealing the answer. Practice questions can stay in chat.
