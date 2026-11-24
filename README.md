@@ -35,31 +35,13 @@ Say "just explain" to skip practice, or "stop" to end. Everything stays in the c
 
 ## Example
 
-An illustrative sketch of the flow, not a real transcript:
+`/explain-it how does TCP work?` in Claude Code. TCP is a broad topic, so it asks where to start:
 
-```text
-You:    /explain-it Why does x change too? I know basic Python lists.
-        x = [1, 2]
-        y = x
-        y.append(3)
+![explain-it asks which part of TCP to start with, offering connection setup, reliability, speed control, or the whole picture](docs/images/explain-it-question.png)
 
-Agent:  Goal: see why x also shows [1, 2, 3].
-        y = x does not copy the list. It gives the same list a second name.
-        y.append(3) changes that one list, so both names show [1, 2, 3].
-        Check: if the next line is y = [9], what does print(x) show?
+After you pick, it states the goal, explains one idea through a worked example, and ends on a question that checks your reasoning:
 
-You:    [9]
-
-Agent:  Not quite. append changed the shared list, but y = [9] builds a new
-        list and points only y at it. x still names the old one: [1, 2, 3].
-        One more: after z = x and z.append(4), what does print(x) show?
-
-You:    [1, 2, 3, 4], because z and x name the same list.
-
-Agent:  Yes. Takeaway: assignment never copies a list. Changing the list
-        shows through every name; pointing a name at a new list leaves the
-        others alone.
-```
+![explain-it explains the three-way handshake with a client and server diagram, then asks what happens if the final ACK is lost](docs/images/explain-it-answer.png)
 
 ## Install
 
